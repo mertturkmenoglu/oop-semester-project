@@ -1,0 +1,8 @@
+
+public interface Vehicle {
+	public String getPlate();
+	public Subscription getSubscription();
+	public boolean isSpecial();
+	public void setPlate(String plate);
+	
+}
