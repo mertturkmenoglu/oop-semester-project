@@ -30,8 +30,8 @@ public class SubscribedVehicle implements Vehicle {
 		this.plate = plate;
 	}
 	
-	public boolean isSpecial() {
-		// TODO Auto-generated method stub
+	@Override
+	public boolean isOfficial() {
 		return false;
 	}
 }

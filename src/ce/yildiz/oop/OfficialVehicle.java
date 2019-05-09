@@ -30,8 +30,8 @@ public class OfficialVehicle implements Vehicle {
 		this.plate = plate;
 	}
 	
-	public boolean isSpecial() {
-		// TODO Auto-generated method stub
-		return false;
+	@Override
+	public boolean isOfficial() {
+		return true;
 	}
 }

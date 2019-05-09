@@ -29,9 +29,8 @@ public class RegularVehicle implements Vehicle{
 	public void setPlate(String plate) {
 		this.plate = plate;
 	}
-
-	public boolean isSpecial() {
-		// TODO Auto-generated method stub
+	@Override
+	public boolean isOfficial() {
 		return false;
 	}
 }
