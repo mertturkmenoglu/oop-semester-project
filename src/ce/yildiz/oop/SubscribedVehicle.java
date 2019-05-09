@@ -15,8 +15,7 @@ public class SubscribedVehicle implements Vehicle {
 
 	@Override
 	public Subscription getSubscription() {
-		// TODO Auto-generated method stub
-		return null;
+		return subscription;
 	}
 	
 	public void setSubscription(Subscription subscription) {
@@ -24,13 +23,11 @@ public class SubscribedVehicle implements Vehicle {
 	}
 	
 	public String getPlate() {
-		// TODO Auto-generated method stub
-		return null;
+		return plate;
 	}
 
 	public void setPlate(String plate) {
-		// TODO Auto-generated method stub
-		
+		this.plate = plate;
 	}
 	
 	public boolean isSpecial() {
