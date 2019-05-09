@@ -1,3 +1,5 @@
+package ce.yildiz.oop;
+
 
 public class AutoPark {
 	private SubscribedVehicle [] subscribedVehicles;

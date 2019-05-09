@@ -1,19 +1,20 @@
+package ce.yildiz.oop;
 
-public class OfficialVehicle implements Vehicle {
+public class RegularVehicle implements Vehicle{
 	private String plate;
 
-	public OfficialVehicle(String plate) {
-		super();
-		this.plate = plate;
-	}
-
-	public OfficialVehicle() {
+	public RegularVehicle() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public String getPlate() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public RegularVehicle(String plate) {
+		super();
+		this.plate = plate;
 	}
 
 	public Subscription getSubscription() {
@@ -28,7 +29,8 @@ public class OfficialVehicle implements Vehicle {
 
 	@Override
 	public void setPlate(String plate) {
-		this.plate=plate;
+		// TODO Auto-generated method stub
+		
 	}
 
 }

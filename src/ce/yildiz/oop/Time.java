@@ -1,3 +1,4 @@
+package ce.yildiz.oop;
 
 public class Time {
 	private int hour,minute;

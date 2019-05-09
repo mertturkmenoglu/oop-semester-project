@@ -1,3 +1,4 @@
+package ce.yildiz.oop;
 
 public class ParkRecord {
 	private Time enterTime,exitTime;
