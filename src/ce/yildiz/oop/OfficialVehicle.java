@@ -27,7 +27,6 @@ public class OfficialVehicle implements Vehicle {
 		return false;
 	}
 
-	@Override
 	public void setPlate(String plate) {
 		this.plate=plate;
 	}

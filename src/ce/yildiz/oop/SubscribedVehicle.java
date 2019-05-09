@@ -28,7 +28,6 @@ public class SubscribedVehicle implements Vehicle {
 		return null;
 	}
 
-	@Override
 	public void setPlate(String plate) {
 		// TODO Auto-generated method stub
 		

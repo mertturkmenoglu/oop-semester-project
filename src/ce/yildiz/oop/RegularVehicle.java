@@ -28,7 +28,6 @@ public class RegularVehicle implements Vehicle{
 		return false;
 	}
 
-	@Override
 	public void setPlate(String plate) {
 		// TODO Auto-generated method stub
 		
