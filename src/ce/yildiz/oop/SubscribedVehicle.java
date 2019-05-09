@@ -4,33 +4,28 @@ public class SubscribedVehicle implements Vehicle {
 	private Subscription subscription;
 	private String plate;
 
-	public void setSubscription(Subscription subscription) {
-		this.subscription = subscription;
-	}
-
 	public SubscribedVehicle() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public SubscribedVehicle(Subscription subscription, String plate) {
-		super();
 		this.subscription = subscription;
 		this.plate = plate;
 	}
 
-	public String getPlate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	@Override
 	public Subscription getSubscription() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public boolean isSpecial() {
+	
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
+	}
+	
+	public String getPlate() {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 	@Override
@@ -38,5 +33,9 @@ public class SubscribedVehicle implements Vehicle {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public boolean isSpecial() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

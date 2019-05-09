@@ -5,5 +5,4 @@ public interface Vehicle {
 	public Subscription getSubscription();
 	public boolean isSpecial();
 	public void setPlate(String plate);
-	
 }

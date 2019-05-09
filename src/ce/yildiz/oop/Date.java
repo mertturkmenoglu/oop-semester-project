@@ -1,9 +1,12 @@
 package ce.yildiz.oop;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Date {
-	private int day,month,year;
+	private int day;
+	private int month;
+	private int year;
 	
 	public Date() {
 
@@ -40,21 +43,22 @@ public class Date {
 	}
 
 	public boolean isAfterThan(Date other) {
-		if(this.year>other.year)
-		{
+		if(this.year > other.year) {
 			return true;
-		} else if(this.year==other.year) {
-			if(this.month>other.month) 
-			{
+		} 
+		
+		else if(this.year==other.year) {
+			if(this.month>other.month) {
 				return true;
 			} else if(this.month==other.month) {
-				if(this.day>=other.day) 
-				{
-					if(this.isEqualsWith(other))
+				if(this.day>=other.day) {
+					if(this.isEqualsWith(other)) {
 						return false;
+					}
 					return true;
-				} else 
+				} else  {
 					return false;
+				}
 			} else 
 				return false;
 		} else
@@ -83,18 +87,19 @@ public class Date {
 	}
 	
 	public boolean isEqualsWith (Date other) {
-		if((this.day==other.day) && (this.month==other.month) && (this.year==other.year)) {
-			return true;
-		}
-		return false;
+		return ((this.day==other.day) && 
+				(this.month==other.month) && 
+				(this.year==other.year));
 	}
 	
 	public static Date getToday() {
 		Calendar cal = new GregorianCalendar();
-		Date temp=new Date();
-		temp.day=cal.get(Calendar.DAY_OF_MONTH);
-		temp.month=cal.get(Calendar.MONTH)+1;
-		temp.year=cal.get(Calendar.YEAR);
+		Date temp = new Date();
+		
+		temp.day = cal.get(Calendar.DAY_OF_MONTH);
+		temp.month = cal.get(Calendar.MONTH) + 1;
+		temp.year = cal.get(Calendar.YEAR);
+		
 		return temp;
 	}
 }

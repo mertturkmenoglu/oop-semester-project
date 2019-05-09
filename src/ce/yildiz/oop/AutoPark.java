@@ -1,6 +1,5 @@
 package ce.yildiz.oop;
 
-
 public class AutoPark {
 	private SubscribedVehicle [] subscribedVehicles;
 	private ParkRecord [] parkRecords;
@@ -12,9 +11,7 @@ public class AutoPark {
 		this.capacity = capacity;
 	}
 	public SubscribedVehicle searchVehicle(String plate) {
-		
-		return;
-		
+		// TODO: Change this method
+		return null;
 	}
-	
 }

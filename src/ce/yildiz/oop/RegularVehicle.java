@@ -1,6 +1,7 @@
 package ce.yildiz.oop;
 
 public class RegularVehicle implements Vehicle{
+	private Subscription subscription;
 	private String plate;
 
 	public RegularVehicle() {
