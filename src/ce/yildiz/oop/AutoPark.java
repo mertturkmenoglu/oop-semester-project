@@ -2,20 +2,19 @@ package ce.yildiz.oop;
 
 import java.util.Arrays;
 
+@SuppressWarnings("unused")
 public class AutoPark {
 	private SubscribedVehicle[] subscribedVehicles;
 	private ParkRecord[] parkRecords;
 	private double hourlyFee;
 	private double incomeDaily;
 	private int capacity;
-	private int lastParkIndex;
 	
 	public AutoPark(double hourlyFee, int capacity) {
 		this.hourlyFee = hourlyFee;
 		this.capacity = capacity;
 		subscribedVehicles = new SubscribedVehicle[capacity];
 		parkRecords = new ParkRecord[capacity];
-		lastParkIndex = 0;
 	}
 	
 	public SubscribedVehicle searchVehicle(String plate) {
@@ -55,12 +54,9 @@ public class AutoPark {
 	
 	public boolean addVehicle(SubscribedVehicle v) {
 		if (searchVehicle(v.getPlate()) == null) {
-			int i = 0;
-			while(i < capacity && subscribedVehicles[i] != null) {
-				i++;
-			}
+			int i = getFirstEmptyIndex(subscribedVehicles);
 			
-			if (i >= capacity) {
+			if (i == -1) {
 				return false;
 			} else {
 				subscribedVehicles[i] = v;
@@ -81,11 +77,64 @@ public class AutoPark {
 		boolean result = searchOnSubscriptions(plate);
 		
 		if (result) {
-			// TODO: Subscribed Vehicle
+			int index = getVehicleIndexOnSubscribedVehicles(plate);
+			parkRecords[getFirstEmptyIndex(parkRecords)] = new ParkRecord(enter, null, 
+					subscribedVehicles[index]);
+			return true;
 		} else {
-			// TODO: Other vehicles
+			// Official vehicle
+			if (isOfficial) {
+				parkRecords[getFirstEmptyIndex(parkRecords)] = 
+						new ParkRecord(enter, null, new OfficialVehicle(plate));
+				return true;
+			}
+			
+			parkRecords[getFirstEmptyIndex(parkRecords)] = new ParkRecord(enter, null, 
+					new RegularVehicle(plate));
+			return true;
 		}
+	}
 	
+	public boolean vehicleExits(String plate, Time exit) throws Exception {
+		Vehicle v = searchVehicle(plate);
+
+		// Vehicle does not exist
+		if (v == null) {
+			return false;
+		}
+		
+		// Official vehicle has permanently valid subscription
+		if (v instanceof OfficialVehicle) {
+			// Get vehicle index and set exit time
+			int index = getVehicleIndexOnParkRecords(v);
+			parkRecords[index].setExitTime(exit);
+			// Vehicle is gone now. Set to null.
+			parkRecords[index] = null;
+			return true;
+		}
+		
+		// Vehicle is subscribed
+		if (v instanceof SubscribedVehicle) {
+			if (!v.getSubscription().isValid()) {
+				// Subscription is not valid. Must pay fee.
+				throw new Exception();
+			}
+		}
+		
+		// Vehicle is regular
+		// Get vehicle index and set exit time
+		int index = getVehicleIndexOnParkRecords(v);
+		parkRecords[index].setExitTime(exit);
+		
+		if(v.getSubscription() == null) {
+			// Vehicle is not subscribed. Must pay fee.
+			incomeDaily += calculateFee(index);
+			
+			// Vehicle is gone now. Set to null.
+			parkRecords[index] = null;
+			return true;
+		}
+
 		return false;
 	}
 	
@@ -125,48 +174,13 @@ public class AutoPark {
 		return -1;
 	}
 	
-	public boolean vehicleExits(String plate, Time exit) {
-		Vehicle v = searchVehicle(plate);
-
-		// Vehicle does not exist
-		if (v == null) {
-			return false;
-		}
-		
-		// Official vehicle has permanently valid subscription
-		if (v instanceof OfficialVehicle) {
-			// Get vehicle index and set exit time
-			int index = getVehicleIndexOnParkRecords(v);
-			parkRecords[index].setExitTime(exit);
-			// Vehicle is gone now. Set to null.
-			parkRecords[index] = null;
-			return true;
-		}
-		
-		// Vehicle is subscribed
-		if (v instanceof SubscribedVehicle) {
-			if (!v.getSubscription().isValid()) {
-				// Subscription is not valid. Must pay fee.
-				incomeDaily += calculateFee(getVehicleIndexOnSubscribedVehicles(v));
-				return true;
+	private int getVehicleIndexOnSubscribedVehicles(String plate) {
+		for(int i = 0; i < capacity; i++) {
+			if (subscribedVehicles[i].getPlate().equals(plate)) {
+				return i;
 			}
 		}
-		
-		// Vehicle is regular
-		// Get vehicle index and set exit time
-		int index = getVehicleIndexOnParkRecords(v);
-		parkRecords[index].setExitTime(exit);
-		
-		if(v.getSubscription() == null) {
-			// Vehicle is not subscribed. Must pay fee.
-			incomeDaily += calculateFee(index);
-			
-			// Vehicle is gone now. Set to null.
-			parkRecords[index] = null;
-			return true;
-		}
-
-		return false;
+		return -1;
 	}
 	
 	private double calculateFee(int vehicleIndex) {
@@ -176,6 +190,14 @@ public class AutoPark {
 					
 		// Calculate fee
 		return  duration * hourlyFee;
+	}
+	
+	private int getFirstEmptyIndex(Object[] array) {
+		int i = 0;
+		while(i < capacity && array[i] != null) {
+			i++;
+		}
+		return (array[i] == null) ? i : -1;
 	}
 	
 	@Override
