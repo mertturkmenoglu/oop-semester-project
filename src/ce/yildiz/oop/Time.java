@@ -1,16 +1,30 @@
 package ce.yildiz.oop;
 
 public class Time {
-	private int hour,minute;
+	private int hour;
+	private int minute;
+	
+	public Time() {
+
+	}
+
+	public Time(int hour, int minute) {
+		this.hour = hour;
+		this.minute = minute;
+	}
+	
 	//Write an Exception
 	public int getDifference(Time other) {
-		int temp=0;
-		if(this.hour>other.hour)
-		{
-			temp+=60*(this.hour-other.hour);
-		} 
-			temp+=this.minute-other.minute;
-		return temp;
+		int diff = 0;
+		if (this.hour > other.hour) {
+			diff += 60 * (this.hour - other.hour);
+			diff += this.minute - other.minute;
+		} else {
+			diff += 60 * (other.hour - this.hour);
+			diff += other.minute - this.minute;
+		}
+
+		return diff;
 	}
 
 	public int getHour() {
@@ -26,16 +40,6 @@ public class Time {
 	}
 
 	public void setMinute(int minute) {
-		this.minute = minute;
-	}
-
-	public Time() {
-		super();
-	}
-
-	public Time(int hour, int minute) {
-		super();
-		this.hour = hour;
 		this.minute = minute;
 	}
 }
