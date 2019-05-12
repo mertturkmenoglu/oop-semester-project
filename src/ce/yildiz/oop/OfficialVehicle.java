@@ -1,33 +1,20 @@
 package ce.yildiz.oop;
 
 public class OfficialVehicle implements Vehicle {
-	private Subscription subscription;
-	private String plate;
-
-	public OfficialVehicle() {
-		
-	}
+	private final String plate;
 	
-	public OfficialVehicle(Subscription subscription, String plate) {
-		this.subscription = subscription;
+	public OfficialVehicle(String plate) {
 		this.plate = plate;
 	}
 
 	@Override
 	public Subscription getSubscription() {
-		return subscription;
+		return null;
 	}
 	
-	public void setSubcription(Subscription subscription) {
-		this.subscription = subscription;
-	}
-	
+	@Override
 	public String getPlate() {
 		return plate;
-	}
-	
-	public void setPlate(String plate) {
-		this.plate = plate;
 	}
 	
 	@Override

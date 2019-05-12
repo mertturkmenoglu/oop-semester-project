@@ -2,11 +2,7 @@ package ce.yildiz.oop;
 
 public class SubscribedVehicle implements Vehicle {
 	private Subscription subscription;
-	private String plate;
-
-	public SubscribedVehicle() {
-		
-	}
+	private final String plate;
 
 	public SubscribedVehicle(Subscription subscription, String plate) {
 		this.subscription = subscription;
@@ -22,12 +18,9 @@ public class SubscribedVehicle implements Vehicle {
 		this.subscription = subscription;
 	}
 	
+	@Override
 	public String getPlate() {
 		return plate;
-	}
-
-	public void setPlate(String plate) {
-		this.plate = plate;
 	}
 	
 	@Override
