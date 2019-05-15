@@ -13,15 +13,20 @@ public class Time {
 		this.minute = minute;
 	}
 	
-	//Write an Exception
-	public int getDifference(Time other) {
+	/**
+	 * Gets difference between this time and other.
+	 * If other time is ahead of this time, returns -1
+	 * else returns difference in minutes
+	 * @param other is other time object
+	 * @return time difference
+	 */
+	public int getDifference(Time other){
 		int diff = 0;
-		if (this.hour > other.hour) {
+		if (this.hour >= other.hour) {
 			diff += 60 * (this.hour - other.hour);
 			diff += this.minute - other.minute;
 		} else {
-			diff += 60 * (other.hour - this.hour);
-			diff += other.minute - this.minute;
+			diff = -1;
 		}
 
 		return diff;

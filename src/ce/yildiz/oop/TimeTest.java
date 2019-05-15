@@ -48,14 +48,14 @@ public class TimeTest {
 	@Test
 	public void testGetDifferenceAheadTimeMinuteBehind() {
 		int actual = thisTime.getDifference(aheadTime);
-		int expected = 57 * 60 + 18;
+		int expected = -1;
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void testGetDifferenceAheadTimeMinuteAhead() {
 		int actual = thisTime.getDifference(aheadTime2);
-		int expected = 58 * 60 + 17;
+		int expected = -1;
 		assertEquals(expected, actual);
 	}
 
