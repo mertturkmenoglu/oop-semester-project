@@ -1,10 +1,13 @@
-package ce.yildiz.oop;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ce.yildiz.oop.Date;
+import ce.yildiz.oop.Subscription;
 
 public class SubscriptionTest {
 	private Subscription subscription;

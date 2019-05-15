@@ -1,4 +1,6 @@
-package ce.yildiz.oop;
+package vehicle;
+
+import ce.yildiz.oop.Subscription;
 
 public class SubscribedVehicle implements Vehicle {
 	private Subscription subscription;

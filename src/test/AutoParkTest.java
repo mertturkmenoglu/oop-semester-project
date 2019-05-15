@@ -1,4 +1,4 @@
-package ce.yildiz.oop;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,13 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ce.yildiz.oop.AutoPark;
+import ce.yildiz.oop.Date;
+import ce.yildiz.oop.ParkRecord;
+import ce.yildiz.oop.Subscription;
+import ce.yildiz.oop.Time;
+import vehicle.SubscribedVehicle;
 
 @SuppressWarnings("unused")
 public class AutoParkTest {

@@ -1,10 +1,12 @@
-package ce.yildiz.oop;
+package test;
 
 import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import ce.yildiz.oop.Time;
 
 public class TimeTest {
 	private static Time thisTime;

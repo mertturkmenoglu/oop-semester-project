@@ -2,6 +2,11 @@ package ce.yildiz.oop;
 
 import java.util.Arrays;
 
+import vehicle.OfficialVehicle;
+import vehicle.RegularVehicle;
+import vehicle.SubscribedVehicle;
+import vehicle.Vehicle;
+
 @SuppressWarnings("unused")
 public class AutoPark {
 	private SubscribedVehicle[] subscribedVehicles;

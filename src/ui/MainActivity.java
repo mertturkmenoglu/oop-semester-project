@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 
 import ce.yildiz.oop.AutoPark;
 import ce.yildiz.oop.Date;
-import ce.yildiz.oop.SubscribedVehicle;
 import ce.yildiz.oop.Subscription;
 import ce.yildiz.oop.Time;
+import vehicle.SubscribedVehicle;
 
 @SuppressWarnings("serial")
 public class MainActivity extends JFrame {

@@ -1,12 +1,14 @@
-package ce.yildiz.oop;
+package vehicle;
 
-public class OfficialVehicle implements Vehicle {
+import ce.yildiz.oop.Subscription;
+
+public class RegularVehicle implements Vehicle{
 	private final String plate;
 	
-	public OfficialVehicle(String plate) {
+	public RegularVehicle(String plate) {
 		this.plate = plate;
 	}
-
+	
 	@Override
 	public Subscription getSubscription() {
 		return null;
@@ -16,14 +18,14 @@ public class OfficialVehicle implements Vehicle {
 	public String getPlate() {
 		return plate;
 	}
-	
+
 	@Override
 	public boolean isOfficial() {
-		return true;
+		return false;
 	}
 	
 	@Override
 	public String toString() {
-		return plate + "-Official\n";
+		return plate + "-Regular\n";
 	}
 }

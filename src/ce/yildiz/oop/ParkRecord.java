@@ -1,5 +1,7 @@
 package ce.yildiz.oop;
 
+import vehicle.Vehicle;
+
 public class ParkRecord {
 	private Time enterTime;
 	private Time exitTime;

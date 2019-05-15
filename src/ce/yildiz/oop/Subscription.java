@@ -1,5 +1,7 @@
 package ce.yildiz.oop;
 
+import vehicle.SubscribedVehicle;
+
 public class Subscription {
 	private Date begin;
 	private Date end;
