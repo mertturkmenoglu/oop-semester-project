@@ -49,6 +49,7 @@ public class DateTest {
 	public void testIsAfterThanBehindDateDayBehind() {
 		boolean actual = thisDate.isAfterThan(behindDate);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -56,6 +57,7 @@ public class DateTest {
 	public void testIsAfterThanBehindDateDayAhead() {
 		boolean actual = thisDate.isAfterThan(behindDate2);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -63,6 +65,7 @@ public class DateTest {
 	public void testIsAfterThanBehindDateMonthBehind() {
 		boolean actual = thisDate.isAfterThan(behindDate3);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -70,6 +73,7 @@ public class DateTest {
 	public void testIsAfterThanBehindDateMonthAhead() {
 		boolean actual = thisDate.isAfterThan(behindDate4);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -77,6 +81,7 @@ public class DateTest {
 	public void testIsAfterThanBehindDateYearBehind() {
 		boolean actual = thisDate.isAfterThan(behindDate5);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -84,6 +89,7 @@ public class DateTest {
 	public void testIsAfterThanDatesEqual() {
 		boolean actual = thisDate.isAfterThan(equalDate);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -91,6 +97,7 @@ public class DateTest {
 	public void testIsAfterThanAheadDateDayBehind() {
 		boolean actual = thisDate.isAfterThan(aheadDate);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -98,6 +105,7 @@ public class DateTest {
 	public void testIsAfterThanAheadDateDayAhead() {
 		boolean actual = thisDate.isAfterThan(aheadDate2);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -105,6 +113,7 @@ public class DateTest {
 	public void testIsAfterThanAheadDateMonthBehind() {
 		boolean actual = thisDate.isAfterThan(aheadDate3);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -112,6 +121,7 @@ public class DateTest {
 	public void testIsAfterThanAheadDateMonthAhead() {
 		boolean actual = thisDate.isAfterThan(aheadDate4);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -119,6 +129,7 @@ public class DateTest {
 	public void testIsAfterThanAheadDateYearAhead() {
 		boolean actual = thisDate.isAfterThan(aheadDate5);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -132,6 +143,7 @@ public class DateTest {
 	public void testIsBeforeThanBehindDateDayBehind() {
 		boolean actual = thisDate.isBeforeThan(behindDate);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -139,6 +151,7 @@ public class DateTest {
 	public void testIsBeforeThanBehindDateDayAhead() {
 		boolean actual = thisDate.isBeforeThan(behindDate2);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -146,6 +159,7 @@ public class DateTest {
 	public void testIsBeforeThanBehindDateMonthBehind() {
 		boolean actual = thisDate.isBeforeThan(behindDate3);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -153,6 +167,7 @@ public class DateTest {
 	public void testIsBeforeThanBehindDateMonthAhead() {
 		boolean actual = thisDate.isBeforeThan(behindDate4);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -160,6 +175,7 @@ public class DateTest {
 	public void testIsBeforeThanBehindDateYearBehind() {
 		boolean actual = thisDate.isBeforeThan(behindDate5);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -167,6 +183,7 @@ public class DateTest {
 	public void testIsBeforeThanDatesEqual() {
 		boolean actual = thisDate.isBeforeThan(equalDate);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -174,6 +191,7 @@ public class DateTest {
 	public void testIsBeforeThanAheadDateDayBehind() {
 		boolean actual = thisDate.isBeforeThan(aheadDate);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -181,6 +199,7 @@ public class DateTest {
 	public void testIsBeforeThanAheadDateDayAhead() {
 		boolean actual = thisDate.isBeforeThan(aheadDate2);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -188,6 +207,7 @@ public class DateTest {
 	public void testIsBeforeThanAheadDateMonthBehind() {
 		boolean actual = thisDate.isBeforeThan(aheadDate3);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -195,6 +215,7 @@ public class DateTest {
 	public void testIsBeforeThanAheadDateMonthAhead() {
 		boolean actual = thisDate.isBeforeThan(aheadDate4);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -202,6 +223,7 @@ public class DateTest {
 	public void testIsBeforeThanAheadDateYearAhead() {
 		boolean actual = thisDate.isBeforeThan(aheadDate5);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -215,6 +237,7 @@ public class DateTest {
 	public void testIsEqualsWithBehindDate() {
 		boolean actual = thisDate.isEqualsWith(behindDate);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -222,6 +245,7 @@ public class DateTest {
 	public void testIsEqualsWithEqualDate() {
 		boolean actual = thisDate.isEqualsWith(equalDate);
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -229,6 +253,7 @@ public class DateTest {
 	public void testIsEqualsWithAheadDate() {
 		boolean actual = thisDate.isEqualsWith(aheadDate);
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	

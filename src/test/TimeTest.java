@@ -18,10 +18,12 @@ public class TimeTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		thisTime = new Time(42, 42);
 		behindTime = new Time(10, 10);
 		behindTime2 = new Time(10, 59);
+		
+		thisTime = new Time(42, 42);
 		equalTime = new Time(42, 42);
+		
 		aheadTime = new Time(100, 0);
 		aheadTime2 = new Time(100, 59);
 	}
@@ -30,6 +32,7 @@ public class TimeTest {
 	public void testGetDifferenceBehindTimeMinuteBehind() {
 		int actual = thisTime.getDifference(behindTime);
 		int expected = 32 * 60 + 32;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -37,6 +40,7 @@ public class TimeTest {
 	public void testGetDifferenceBehindTimeMinuteAhead() {
 		int actual = thisTime.getDifference(behindTime2);
 		int expected = 32 * 60 + (42-59);
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -44,6 +48,7 @@ public class TimeTest {
 	public void testGetDifferenceEqualTimes() {
 		int actual = thisTime.getDifference(equalTime);
 		int expected = 0;
+		
 		assertEquals(expected, actual);
 	}
 
@@ -51,6 +56,7 @@ public class TimeTest {
 	public void testGetDifferenceAheadTimeMinuteBehind() {
 		int actual = thisTime.getDifference(aheadTime);
 		int expected = -1;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -58,6 +64,7 @@ public class TimeTest {
 	public void testGetDifferenceAheadTimeMinuteAhead() {
 		int actual = thisTime.getDifference(aheadTime2);
 		int expected = -1;
+		
 		assertEquals(expected, actual);
 	}
 
@@ -65,8 +72,10 @@ public class TimeTest {
 	public static void tearDownClass() {
 		behindTime = null;
 		behindTime2 = null;
+		
 		thisTime = null;
 		equalTime = null;
+		
 		aheadTime = null;
 		aheadTime2 = null;
 	}

@@ -29,6 +29,7 @@ public class SubscriptionTest {
 		subscription = new Subscription(epochDate, aheadDate, "34 CE 1000");
 		boolean actual = subscription.isValid();
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -37,6 +38,7 @@ public class SubscriptionTest {
 		subscription = new Subscription(behindDate, epochDate, "34 CE 1000");
 		boolean actual = subscription.isValid();
 		boolean expected = false;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -45,6 +47,7 @@ public class SubscriptionTest {
 		subscription = new Subscription(date, aheadDate, "34 CE 1000");
 		boolean actual = subscription.isValid();
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
@@ -53,6 +56,7 @@ public class SubscriptionTest {
 		subscription = new Subscription(epochDate, date, "34 CE 1000");
 		boolean actual = subscription.isValid();
 		boolean expected = true;
+		
 		assertEquals(expected, actual);
 	}
 	
