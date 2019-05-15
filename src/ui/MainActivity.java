@@ -136,13 +136,13 @@ public class MainActivity extends JFrame {
 			enterHour = (String)
 					JOptionPane.showInputDialog(
 							"Aracýn giriþ yaptýðý saat(sadece saat bilgisi): ");
-		} while (!Validate.enterHour(plate));
+		} while (!Validate.enterHour(enterHour));
 		
 		do {
 			enterMinute = (String)
 					JOptionPane.showInputDialog(
 							"Aracýn giriþ yaptýðý dakika(sadece dakika bilgisi): ");
-		} while (!Validate.enterMinute(plate));
+		} while (!Validate.enterMinute(enterMinute));
 		
 		boolean added = autoPark.vehicleEnters(plate, 
 			new Time(Integer.valueOf(enterHour), Integer.valueOf(enterMinute)), 

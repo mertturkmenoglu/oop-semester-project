@@ -42,4 +42,24 @@ public class ParkRecord {
 	public int getParkingDuration() {
 		return exitTime.getDifference(enterTime);
 	}
+	
+	@Override
+	public String toString() {
+		String s = "\n" + vehicle.toString();
+		s += "Enter Time: ";
+		if (enterTime != null) {
+			s += "\t" + enterTime.toString() + "\n";
+		} else {
+			s += "\tnull" + "\n";
+		}
+		
+		s += "Exit time: ";
+		if(exitTime != null) {
+			s += "\t" + exitTime.toString() + "\n";
+		} else {
+			s += "\tnull" + "\n";
+		}
+		
+		return s;
+	}
 }

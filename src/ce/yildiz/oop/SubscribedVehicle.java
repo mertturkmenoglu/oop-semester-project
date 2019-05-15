@@ -27,4 +27,9 @@ public class SubscribedVehicle implements Vehicle {
 	public boolean isOfficial() {
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return plate + "-Subscribed\n";
+	}
 }

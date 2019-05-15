@@ -21,4 +21,9 @@ public class OfficialVehicle implements Vehicle {
 	public boolean isOfficial() {
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return plate + "-Official\n";
+	}
 }
