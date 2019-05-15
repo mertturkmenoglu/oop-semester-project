@@ -10,11 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 import ce.yildiz.oop.AutoPark;
-import ce.yildiz.oop.Date;
 import ce.yildiz.oop.Time;
 
 @SuppressWarnings("serial")
@@ -55,14 +52,26 @@ public class MainActivity extends JFrame {
 		
 		setSize(screenWidth / 2, screenHeight / 2);
 		setLocation(screenWidth / 4, screenHeight / 4);
-		setTitle("I'M THE BAAAAAAAD GUUUY. D'UH!");
+		setTitle("JAVA SEMESTER PROJECT MERT TURKMENOGLU - CAGDAS AYYILDIZ");
+		String hourlyFee;
+		String capacity;
 		
-		String hourlyFee = (String)
-				JOptionPane.showInputDialog("Otopark saatlik ücreti: ");
-		String capacity = (String)
-				JOptionPane.showInputDialog("Kapasite: ");
-		autoPark = new AutoPark(Double.valueOf(hourlyFee), 
-				Integer.valueOf(capacity));
+		do {
+			hourlyFee = (String)
+					JOptionPane.showInputDialog("Otopark saatlik ücreti: ");
+		} while (!Validate.hourlyFee(hourlyFee));
+		
+		do {
+			capacity = (String) JOptionPane.showInputDialog("Kapasite: ");
+		} while (!Validate.capacity(capacity));
+		
+		try {
+			autoPark = new AutoPark(Double.valueOf(hourlyFee), 
+					Integer.valueOf(capacity));
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "INVALID VALUES");
+		}
 		
 		JButton aracEkle = new JButton("Araç Ekle");
 		JButton aracCikar = new JButton("Araç Çýkar");
@@ -84,16 +93,14 @@ public class MainActivity extends JFrame {
 		aracCikar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String plate = (String)
-						JOptionPane.showInputDialog("Çýkarýlacak aracýn plakasý: ");
-				JOptionPane.showMessageDialog(null, plate);
+				vehicleExits();
 			}
 		});
 		
 		kayitEkle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "KAYIT EKLE");
+				addVehicle();
 			}
 		});
 		
@@ -109,6 +116,11 @@ public class MainActivity extends JFrame {
 		String plate = (String)
 				JOptionPane.showInputDialog("Eklenecek aracýn plakasý: ");
 		
+		if (plate.length() == 0) {
+			JOptionPane.showMessageDialog(null, "INVALID PLATE");
+			return;
+		}
+		
 		Object[] possibilities = {"Evet", "Hayýr"};
 		String isOfficialString = (String)JOptionPane.showInputDialog(
 		                    null, "Resmi araç mý?:\n",
@@ -120,10 +132,22 @@ public class MainActivity extends JFrame {
 		boolean isOfficial = isOfficialString.equals("Evet");
 		
 		String enterHour = (String)
-				JOptionPane.showInputDialog("Aracýn giriþ yaptýðý saat: ");
+				JOptionPane.showInputDialog(
+						"Aracýn giriþ yaptýðý saat(sadece saat bilgisi): ");
+		
+		if (enterHour.length() == 0) {
+			JOptionPane.showMessageDialog(null, "INVALID HOUR DATA");
+			return;
+		}
 		
 		String enterMinute = (String) 
-				JOptionPane.showInputDialog("Aracýn giriþ yaptýðý dakika: ");
+				JOptionPane.showInputDialog(
+						"Aracýn giriþ yaptýðý dakika(sadece dakika bilgisi): ");
+		
+		if (enterMinute.length() == 0) {
+			JOptionPane.showMessageDialog(null, "INVALID MINUTE DATA");
+			return;
+		}
 		
 		boolean eklendi = autoPark.vehicleEnters(plate, 
 			new Time(Integer.valueOf(enterHour), Integer.valueOf(enterMinute)), 
@@ -133,4 +157,11 @@ public class MainActivity extends JFrame {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
+	private void vehicleExits() {
+		// TODO: IMPLEMENT
+	}
+	
+	private void addVehicle() {
+		// TODO: IMPLEMENT
+	}
 }
