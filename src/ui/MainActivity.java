@@ -3,8 +3,12 @@ package ui;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -33,10 +37,7 @@ public class MainActivity extends JFrame {
 	 */
 	public MainActivity() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -47,42 +48,36 @@ public class MainActivity extends JFrame {
 		
 		setSize(screenWidth / 2, screenHeight / 2);
 		setLocation(screenWidth / 4, screenHeight / 4);
-		setTitle("Test Window 2");
+		setTitle("I'M THE BAAAAAAAD GUUUY. D'UH!");
 		
-		JButton yellowButton = new JButton("Yellow");
-		JButton blueButton = new JButton("Blue");
-		JButton redButton = new JButton("Red");
+		JButton aracEkle = new JButton("Araç Ekle");
+		JButton aracCikar = new JButton("Araç Çýkar");
+		JButton kayitEkle = new JButton("Kayýt Ekle");
 		
+		contentPane.add(aracEkle);
+		contentPane.add(aracCikar);
+		contentPane.add(kayitEkle);
 		
+		aracEkle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "ARAC EKLE");
+			}
+		});
 		
-		//contentPane = new JPanel();
+		aracCikar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "ARAC CIKAR");
+			}
+		});
 		
-		contentPane.add(yellowButton);
-		contentPane.add(blueButton);
-		contentPane.add(redButton);
-		
-	
-//		getContentPane().setLayout(new GridLayout(3, 1));
-//		
-//		JLabel testLabel = new JLabel("Plate: ");
-//		getContentPane().add(testLabel);
-//		testLabel.setSize(350, 100);
-//		
-//		JTextField testText = new JTextField(20);
-//		getContentPane().add(testText);
-//		
-//		JButton testButton = new JButton("Add Vehicle");
-//		getContentPane().add(testButton);
-//		
-//		controlPanel = new JPanel();
-//		controlPanel.setLayout(new FlowLayout());
-//		testButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				String str = testText.getText();
-//				JOptionPane.showMessageDialog(null, str);
-//			}
-//		});
+		kayitEkle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "KAYIT EKLE");
+			}
+		});
 	}
 
 }
