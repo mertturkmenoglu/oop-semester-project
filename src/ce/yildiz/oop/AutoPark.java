@@ -129,8 +129,12 @@ public class AutoPark {
 		}
 	}
 	
-	public boolean vehicleExits(String plate, Time exit) throws Exception {
-		Vehicle v = searchVehicle(plate);
+	public boolean vehicleExits(String plate, Time exit) {
+		if (plate == null || exit == null) {
+			return false;
+		}
+		
+		Vehicle v = parkRecords[getVehicleIndexOnParkRecords(plate)].getVehicle();
 
 		// Vehicle does not exist
 		if (v == null) {
@@ -180,8 +184,10 @@ public class AutoPark {
 	
 	private int getVehicleIndexOnParkRecords(Vehicle v) {
 		for(int i = 0; i < capacity; i++) {
-			if (parkRecords[i].getVehicle() == v) {
-				return i;
+			if (parkRecords[i] != null) {
+				if (parkRecords[i].getVehicle() == v) {
+					return i;
+				}
 			}
 		}
 		return -1;
@@ -189,8 +195,10 @@ public class AutoPark {
 	
 	private int getVehicleIndexOnParkRecords(String plate) {
 		for(int i = 0; i < capacity; i++) {
-			if (parkRecords[i].getVehicle().getPlate().equals(plate)) {
-				return i;
+			if (parkRecords[i] != null) {
+				if (parkRecords[i].getVehicle().getPlate().equals(plate)) {
+					return i;
+				}
 			}
 		}
 		return -1;
@@ -198,8 +206,10 @@ public class AutoPark {
 	
 	private int getVehicleIndexOnSubscribedVehicles(Vehicle v) {
 		for(int i = 0; i < capacity; i++) {
-			if (subscribedVehicles[i] == v) {
-				return i;
+			if (subscribedVehicles[i] != null) {
+				if (subscribedVehicles[i] == v) {
+					return i;
+				}
 			}
 		}
 		return -1;
@@ -207,8 +217,10 @@ public class AutoPark {
 	
 	private int getVehicleIndexOnSubscribedVehicles(String plate) {
 		for(int i = 0; i < capacity; i++) {
-			if (subscribedVehicles[i].getPlate().equals(plate)) {
-				return i;
+			if (subscribedVehicles[i] != null) {
+				if (subscribedVehicles[i].getPlate().equals(plate)) {
+					return i;
+				}
 			}
 		}
 		return -1;
@@ -225,11 +237,16 @@ public class AutoPark {
 	
 	private int getFirstEmptyIndex(Object[] array) {
 		int i = 0;
+		
 		while(i < capacity && array[i] != null) {
 			i++;
 		}
 		
-		return (array[i] == null) ? i : -1;
+		if (i < capacity) {
+			return (array[i] == null) ? i : -1;
+		} else {
+			return -1;
+		}
 	}
 	
 

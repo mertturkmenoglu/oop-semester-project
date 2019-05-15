@@ -12,6 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ce.yildiz.oop.AutoPark;
+import ce.yildiz.oop.Date;
+import ce.yildiz.oop.SubscribedVehicle;
+import ce.yildiz.oop.Subscription;
 import ce.yildiz.oop.Time;
 
 @SuppressWarnings("serial")
@@ -136,13 +139,13 @@ public class MainActivity extends JFrame {
 			enterHour = (String)
 					JOptionPane.showInputDialog(
 							"Aracýn giriþ yaptýðý saat(sadece saat bilgisi): ");
-		} while (!Validate.enterHour(enterHour));
+		} while (!Validate.hour(enterHour));
 		
 		do {
 			enterMinute = (String)
 					JOptionPane.showInputDialog(
 							"Aracýn giriþ yaptýðý dakika(sadece dakika bilgisi): ");
-		} while (!Validate.enterMinute(enterMinute));
+		} while (!Validate.minute(enterMinute));
 		
 		boolean added = autoPark.vehicleEnters(plate, 
 			new Time(Integer.valueOf(enterHour), Integer.valueOf(enterMinute)), 
@@ -153,10 +156,35 @@ public class MainActivity extends JFrame {
 	}
 
 	private void vehicleExits() {
-		// TODO: IMPLEMENT
+		String plate;
+		String exitHour;
+		String exitMinute;
+		
+		do {
+			plate = (String)
+					JOptionPane.showInputDialog("Çýkacak aracýn plakasý: ");
+		} while (!Validate.plate(plate));
+		
+		do {
+			exitHour = (String)
+					JOptionPane.showInputDialog(
+							"Aracýn çýkýþ yaptýðý saat(sadece saat bilgisi): ");
+		} while (!Validate.hour(exitHour));
+		
+		do {
+			exitMinute = (String)
+					JOptionPane.showInputDialog(
+							"Aracýn çýkýþ yaptýðý dakika(sadece dakika bilgisi): ");
+		} while (!Validate.minute(exitMinute));
+		
+		boolean checkOut = autoPark.vehicleExits(plate,
+				new Time(Integer.valueOf(exitHour), Integer.valueOf(exitMinute)));
+		
+		String message = checkOut ? "Araç Çýkýþ Yaptý" : "Araç Çýkartýlamadý";
+		JOptionPane.showMessageDialog(null, message);
 	}
 	
 	private void addVehicle() {
-		// TODO: IMPLEMENT
+		
 	}
 }

@@ -32,7 +32,7 @@ public class Validate {
 		return (plate.length() > 0);
 	}
 	
-	public static boolean enterHour(String hour) {
+	public static boolean hour(String hour) {
 		int value;
 		
 		try {
@@ -45,7 +45,7 @@ public class Validate {
 		return !(hour.length() == 0 || value < 0 || value >= 24);
 	}
 	
-	public static boolean enterMinute(String minute) {
+	public static boolean minute(String minute) {
 		int value;
 		
 		try {
