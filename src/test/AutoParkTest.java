@@ -39,7 +39,11 @@ public class AutoParkTest {
 				"04 DD 04",
 				"05 EE 05",
 				"06 FF 06",
-				"07 GG 07"
+				"07 GG 07",
+				"08 HH 08",
+				"09 II 09",
+				"10 JJ 10",
+				"11 KK 11"
 		};
 	}
 	
@@ -48,14 +52,15 @@ public class AutoParkTest {
 		autoPark.setParkRecords(new ParkRecord[autoPark.getCapacity()]);
 		autoPark.setSubscribedVehicles(new SubscribedVehicle[autoPark.getCapacity()]);
 		
-		for(int i= 0; i < plates.length; i++) {
+		for(int i = 0; i < plates.length; i++) {
 			autoPark.addVehicle(new SubscribedVehicle(new Subscription(
-							behindDate, aheadDate, plates[i]), plates[i]));
+									behindDate, aheadDate, plates[i]), 
+								plates[i]));
 		}
 	}
 	
 	@Test
-	public void testSearchVehicle1() {
+	public void testSearchVehicleValidVehicle() {
 		SubscribedVehicle actual = autoPark.searchVehicle("01 AA 01");
 		SubscribedVehicle expected = autoPark.getSubscribedVehicles()[0];
 		
@@ -63,13 +68,19 @@ public class AutoParkTest {
 	}
 	
 	@Test
-	public void testSearchVehicle2() {
+	public void testSearchVehicleInvalidVehicle() {
 		SubscribedVehicle actual = autoPark.searchVehicle("INVALID PLATE");
 		assertNull(actual);
 	}
 	
 	@Test
-	public void testIsParkedReturnsTrue() {
+	public void testSearchVehicleNullValue() {
+		SubscribedVehicle actual = autoPark.searchVehicle(null);
+		assertNull(actual);
+	}
+	
+	@Test
+	public void testIsParkedValidVehicle() {
 		autoPark.vehicleEnters(plates[0], new Time(1, 20), false);
 		
 		boolean actual = autoPark.isParked(plates[0]);
@@ -79,11 +90,18 @@ public class AutoParkTest {
 	}
 	
 	@Test
-	public void testIsParkedReturnsFalse() {
+	public void testIsParkedInvalidVehicle() {
 		boolean actual = autoPark.isParked("INVALID PLATE");
 		boolean expected = false;
 		
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testIsParkedNullValue() {
+		boolean actual = autoPark.isParked(null);
+		boolean expected = false;
+		assertTrue(actual == expected);
 	}
 	
 	@Test
