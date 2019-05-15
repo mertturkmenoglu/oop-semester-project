@@ -113,14 +113,15 @@ public class MainActivity extends JFrame {
 	}
 	
 	private void vehicleEnters() {
-		String plate = (String)
-				JOptionPane.showInputDialog("Eklenecek aracýn plakasý: ");
+		String plate;
+		String enterHour;
+		String enterMinute;
 		
-		if (plate.length() == 0) {
-			JOptionPane.showMessageDialog(null, "INVALID PLATE");
-			return;
-		}
-		
+		do {
+			plate = (String)
+					JOptionPane.showInputDialog("Eklenecek aracýn plakasý: ");
+		} while (!Validate.plate(plate));
+
 		Object[] possibilities = {"Evet", "Hayýr"};
 		String isOfficialString = (String)JOptionPane.showInputDialog(
 		                    null, "Resmi araç mý?:\n",
@@ -131,29 +132,23 @@ public class MainActivity extends JFrame {
 		
 		boolean isOfficial = isOfficialString.equals("Evet");
 		
-		String enterHour = (String)
-				JOptionPane.showInputDialog(
-						"Aracýn giriþ yaptýðý saat(sadece saat bilgisi): ");
+		do {
+			enterHour = (String)
+					JOptionPane.showInputDialog(
+							"Aracýn giriþ yaptýðý saat(sadece saat bilgisi): ");
+		} while (!Validate.enterHour(plate));
 		
-		if (enterHour.length() == 0) {
-			JOptionPane.showMessageDialog(null, "INVALID HOUR DATA");
-			return;
-		}
+		do {
+			enterMinute = (String)
+					JOptionPane.showInputDialog(
+							"Aracýn giriþ yaptýðý dakika(sadece dakika bilgisi): ");
+		} while (!Validate.enterMinute(plate));
 		
-		String enterMinute = (String) 
-				JOptionPane.showInputDialog(
-						"Aracýn giriþ yaptýðý dakika(sadece dakika bilgisi): ");
-		
-		if (enterMinute.length() == 0) {
-			JOptionPane.showMessageDialog(null, "INVALID MINUTE DATA");
-			return;
-		}
-		
-		boolean eklendi = autoPark.vehicleEnters(plate, 
+		boolean added = autoPark.vehicleEnters(plate, 
 			new Time(Integer.valueOf(enterHour), Integer.valueOf(enterMinute)), 
 			isOfficial);
 		
-		String message = eklendi ? "Araç Eklendi" : "Araç Eklenemedi";
+		String message = added ? "Araç Eklendi" : "Araç Eklenemedi";
 		JOptionPane.showMessageDialog(null, message);
 	}
 
