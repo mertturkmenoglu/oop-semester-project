@@ -67,7 +67,7 @@ public class MainActivity extends JFrame {
 		 */
 		do {
 			hourlyFee = (String)
-					JOptionPane.showInputDialog("Otopark saatlik ücreti: ");
+					JOptionPane.showInputDialog("Autopark hourly fee: ");
 		} while (!Validate.hourlyFee(hourlyFee));
 		
 		
@@ -76,7 +76,7 @@ public class MainActivity extends JFrame {
 		 * On other input cases, it will ask it again.
 		 */
 		do {
-			capacity = (String) JOptionPane.showInputDialog("Kapasite: ");
+			capacity = (String) JOptionPane.showInputDialog("Autopark capacity: ");
 		} while (!Validate.capacity(capacity));
 		
 		/*
@@ -94,10 +94,10 @@ public class MainActivity extends JFrame {
 		 * Init Buttons. Buttons will be the medium 
 		 * between user and the program.
 		 */
-		JButton aracEkle = new JButton("Araç Ekle");
-		JButton aracCikar = new JButton("Araç Çýkar");
-		JButton kayitEkle = new JButton("Kayýt Ekle");
-		JButton otoparkGoruntule = new JButton("Otopark Görüntüle");
+		JButton aracEkle = new JButton("Enter Vehicle");
+		JButton aracCikar = new JButton("Exit Vehicle");
+		JButton kayitEkle = new JButton("Add Subscribed Vehicles");
+		JButton otoparkGoruntule = new JButton("View AutoPark");
 		
 		/*
 		 * Add buttons to pane. If you do not add it, 
@@ -163,22 +163,22 @@ public class MainActivity extends JFrame {
 		 */
 		do {
 			plate = (String)
-					JOptionPane.showInputDialog("Eklenecek aracýn plakasý: ");
+					JOptionPane.showInputDialog("Vehicle plate: ");
 		} while (!Validate.plate(plate));
 
 		/*
-		 * It will display a spinner with two options: "Evet" or "Hayir"
+		 * It will display a spinner with two options: "Yes" or "No"
 		 * Answer will be converted to a boolean value.
 		 */
-		Object[] possibilities = {"Evet", "Hayýr"};
+		Object[] possibilities = {"Yes", "No"};
 		String isOfficialString = (String)JOptionPane.showInputDialog(
-		                    null, "Resmi araç mý?:\n",
-		                    "Resmiyet Bilgisi",
+		                    null, "Is it Official?:\n",
+		                    "Status",
 		                    JOptionPane.PLAIN_MESSAGE,
 		                    null, possibilities,
-		                    "resmiyet");
+		                    "official");
 		
-		boolean isOfficial = isOfficialString.equals("Evet");
+		boolean isOfficial = isOfficialString.equals("Yes");
 		
 		/*
 		 * Take time information. First take hour data then minute data.
@@ -186,13 +186,13 @@ public class MainActivity extends JFrame {
 		do {
 			enterHour = (String)
 					JOptionPane.showInputDialog(
-							"Aracýn giriþ yaptýðý saat(sadece saat bilgisi): ");
+							"Enter hour(Only hour data): ");
 		} while (!Validate.hour(enterHour));
 		
 		do {
 			enterMinute = (String)
 					JOptionPane.showInputDialog(
-							"Aracýn giriþ yaptýðý dakika(sadece dakika bilgisi): ");
+							"Enter minute(Only minute data): ");
 		} while (!Validate.minute(enterMinute));
 		
 		/*
@@ -205,7 +205,7 @@ public class MainActivity extends JFrame {
 		/*
 		 * According to boolean value, print information to screen.
 		 */
-		String message = added ? "Araç Eklendi" : "Araç Eklenemedi";
+		String message = added ? "Vehicle added" : "Couldnot added";
 		JOptionPane.showMessageDialog(null, message);
 	}
 
@@ -227,7 +227,7 @@ public class MainActivity extends JFrame {
 		 */
 		do {
 			plate = (String)
-					JOptionPane.showInputDialog("Çýkacak aracýn plakasý: ");
+					JOptionPane.showInputDialog("Vehicle plate: ");
 		} while (!Validate.plate(plate));
 		
 		/*
@@ -236,13 +236,13 @@ public class MainActivity extends JFrame {
 		do {
 			exitHour = (String)
 					JOptionPane.showInputDialog(
-							"Aracýn çýkýþ yaptýðý saat(sadece saat bilgisi): ");
+							"Exit hour(Only hour data): ");
 		} while (!Validate.hour(exitHour));
 		
 		do {
 			exitMinute = (String)
 					JOptionPane.showInputDialog(
-							"Aracýn çýkýþ yaptýðý dakika(sadece dakika bilgisi): ");
+							"Exit minute(Only minute data): ");
 		} while (!Validate.minute(exitMinute));
 		
 		/*
@@ -254,7 +254,7 @@ public class MainActivity extends JFrame {
 		/*
 		 * According to boolean value, print information to screen.
 		 */
-		String message = checkOut ? "Araç Çýkýþ Yaptý" : "Araç Çýkartýlamadý";
+		String message = checkOut ? "Exit success" : "Unsuccessful";
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
@@ -276,7 +276,7 @@ public class MainActivity extends JFrame {
 		 */
 		do {
 			plate = (String)
-					JOptionPane.showInputDialog("Aracýn plakasý: ");
+					JOptionPane.showInputDialog("Vehicle plate: ");
 		} while (!Validate.plate(plate));
 		
 		/*
@@ -294,7 +294,7 @@ public class MainActivity extends JFrame {
 		/*
 		 * According to boolean value, print information to screen.
 		 */
-		String message = added ? "Araç eklendi" : "Araç eklenemedi";
+		String message = added ? "Vehicle added" : "Unsuccessful";
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
@@ -321,23 +321,23 @@ public class MainActivity extends JFrame {
 		 */
 		do {
 			beginDay = (String)
-					JOptionPane.showInputDialog("Baþlangýç günü: ");
+					JOptionPane.showInputDialog("Beginning day: ");
 			
 			beginMonth = (String)
-					JOptionPane.showInputDialog("Baþlangýç ayý: ");
+					JOptionPane.showInputDialog("Beggining month: ");
 			
 			beginYear = (String)
-					JOptionPane.showInputDialog("Baþlangýç yýlý: ");
+					JOptionPane.showInputDialog("Beggining year: ");
 			
 			
 			endDay = (String)
-					JOptionPane.showInputDialog("Bitiþ günü: ");
+					JOptionPane.showInputDialog("End day: ");
 			
 			endMonth = (String)
-					JOptionPane.showInputDialog("Bitiþ ayý: ");
+					JOptionPane.showInputDialog("End month: ");
 			
 			endYear = (String)
-					JOptionPane.showInputDialog("Bitiþ yýlý: ");
+					JOptionPane.showInputDialog("End year: ");
 			
 			beginDate = beginDay +"-" + beginMonth + "-" + beginYear;
 			endDate = endDay + "-" + endMonth + "-" + endYear;
