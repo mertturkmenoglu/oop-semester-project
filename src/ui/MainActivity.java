@@ -185,6 +185,70 @@ public class MainActivity extends JFrame {
 	}
 	
 	private void addVehicle() {
+		String plate;
+		Date[] dates;
+		Subscription subscription;
+		SubscribedVehicle vehicle;
 		
+		do {
+			plate = (String)
+					JOptionPane.showInputDialog("Aracýn plakasý: ");
+		} while (!Validate.plate(plate));
+		
+		dates = getDate();
+		subscription = new Subscription(dates[0], dates[1], plate);
+		vehicle = new SubscribedVehicle(subscription, plate);
+		
+		boolean added = autoPark.addVehicle(vehicle);
+		
+		String message = added ? "Araç eklendi" : "Araç eklenemedi";
+		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	private Date[] getDate() {
+		// public Date(int day, int month, int year)
+		Date[] dates = new Date[2];
+		
+		String beginDay;
+		String beginMonth;
+		String beginYear;
+		String endDay;
+		String endMonth;
+		String endYear;
+		String beginDate;
+		String endDate;
+		
+		do {
+			beginDay = (String)
+					JOptionPane.showInputDialog("Baþlangýç günü: ");
+			
+			beginMonth = (String)
+					JOptionPane.showInputDialog("Baþlangýç ayý: ");
+			
+			beginYear = (String)
+					JOptionPane.showInputDialog("Baþlangýç yýlý: ");
+			
+			
+			endDay = (String)
+					JOptionPane.showInputDialog("Bitiþ günü: ");
+			
+			endMonth = (String)
+					JOptionPane.showInputDialog("Bitiþ ayý: ");
+			
+			endYear = (String)
+					JOptionPane.showInputDialog("Bitiþ yýlý: ");
+			
+			beginDate = beginDay +"-" + beginMonth + "-" + beginYear;
+			endDate = endDay + "-" + endMonth + "-" + endYear;
+		} while (!Validate.date(beginDate) || !Validate.date(endDate));
+		
+		dates[0] = new Date(Integer.valueOf(beginDay), 
+							Integer.valueOf(beginMonth),
+							Integer.valueOf(beginYear));
+		dates[1] = new Date(Integer.valueOf(endDay),
+							Integer.valueOf(endMonth),
+							Integer.valueOf(endYear));
+		
+		return dates;
 	}
 }

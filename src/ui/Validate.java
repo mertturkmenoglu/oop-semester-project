@@ -1,6 +1,12 @@
 package ui;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class Validate {
+	
+	private final static String DATE_FORMAT = "dd-MM-yyyy";
 
 	public static boolean hourlyFee(String fee) {
 		double value;
@@ -56,5 +62,17 @@ public class Validate {
 		}
 		
 		return !(minute.length() == 0 || value < 0 || value >= 60);
+	}
+	
+	public static boolean date(String date) {
+		try {
+			DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+			dateFormat.setLenient(false);
+			dateFormat.parse(date);
+			return true;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
