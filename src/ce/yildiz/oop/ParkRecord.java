@@ -29,8 +29,13 @@ public class ParkRecord {
 		return exitTime;
 	}
 
-	public void setExitTime(Time exitTime) {
-		this.exitTime = exitTime;
+	public boolean setExitTime(Time exitTime) {
+		if (exitTime.getDifference(enterTime) == -1) {
+			return false;
+		} else {
+			this.exitTime = exitTime;
+			return true;
+		}
 	}
 
 	public Vehicle getVehicle() {

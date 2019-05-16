@@ -25,7 +25,7 @@ public class AutoParkTest {
 	
 	@BeforeClass
 	public static void setUpClass() {
-		autoPark = new AutoPark(2, 20);
+		autoPark = new AutoPark(2, 10);
 		
 		date = Date.getToday();
 		behindDate = new Date(1, 1, 1000);
@@ -42,15 +42,14 @@ public class AutoParkTest {
 				"07 GG 07",
 				"08 HH 08",
 				"09 II 09",
-				"10 JJ 10",
-				"11 KK 11"
+				"10 JJ 10"
 		};
 	}
 	
 	@Before
 	public void clearArrays() {
-		autoPark.setParkRecords(new ParkRecord[autoPark.getCapacity()]);
-		autoPark.setSubscribedVehicles(new SubscribedVehicle[autoPark.getCapacity()]);
+		autoPark.setParkRecords(new ParkRecord[10]);
+		autoPark.setSubscribedVehicles(new SubscribedVehicle[10]);
 		
 		for(int i = 0; i < plates.length; i++) {
 			autoPark.addVehicle(new SubscribedVehicle(new Subscription(
@@ -123,7 +122,26 @@ public class AutoParkTest {
 	}
 	
 	@Test
-	public void testVehicleExitsReturnsTrueVehicleDoesNotExists() {
+	public void testVehicleEntersNullValueReturnsFalse() {
+		boolean actual = autoPark.vehicleEnters(null, null, false);
+		boolean expected = false;
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testVehicleEntersCapacityFullReturnsFalse() {
+		for(int i = 0; i < 10; i++) {
+			autoPark.vehicleEnters(plates[i], new Time(1, 20), false);
+		}
+		
+		boolean actual = autoPark.vehicleEnters("TOO MANY VEHICLE", new Time(1, 20), false);
+		boolean expected = false;
+		
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testVehicleExitsVehicleDoesNotExistsReturnsFalse() {
 		try {
 			boolean actual = autoPark.vehicleExits(null, null);
 			boolean expected = false;
@@ -149,7 +167,7 @@ public class AutoParkTest {
 	}
 	
 	@Test
-	public void testIncome() {
+	public void testIncomeRegularVehicle() {
 		double first = autoPark.getIncomeDaily();
 		
 		autoPark.vehicleEnters("Regular Plate", new Time(1, 0), false);
@@ -163,6 +181,38 @@ public class AutoParkTest {
 		double end = autoPark.getIncomeDaily();
 		double actual = end - first;
 		double expected = autoPark.getHourlyFee();
+		
+		assertEquals(expected, actual, 0);
+	}
+	
+	@Test
+	public void testIncomeOfficialVehicle() {
+		AutoPark ap = new AutoPark(2, 5);
+		ap.vehicleEnters("OFFICIAL", new Time(1, 0), true);
+		double first = autoPark.getIncomeDaily();
+
+		autoPark.vehicleExits("OFFICIAL", new Time(2, 0));
+	
+		double end = autoPark.getIncomeDaily();
+		double actual = end - first;
+		double expected = 0;
+		
+		assertEquals(expected, actual, 0);
+	}
+	
+	@Test
+	public void testIncomeSubscribedVehicleValidSubscription() {
+		AutoPark ap = new AutoPark(2, 5);
+		ap.addVehicle(new SubscribedVehicle(new Subscription(behindDate, aheadDate, "SUBSCRIBED"), 
+				"SUBSCRIBED"));
+		ap.vehicleEnters("SUBSCRIBED", new Time(1, 0), false);
+		double first = autoPark.getIncomeDaily();
+
+		autoPark.vehicleExits("SUBSCRIBED", new Time(2, 0));
+	
+		double end = autoPark.getIncomeDaily();
+		double actual = end - first;
+		double expected = 0;
 		
 		assertEquals(expected, actual, 0);
 	}

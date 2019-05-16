@@ -88,6 +88,11 @@ public class AutoPark {
 	}
 	
 	public boolean vehicleEnters(String plate, Time enter, boolean isOfficial) {
+		// Null check
+		if (plate == null || enter == null) {
+			return false;
+		}
+		
 		// Vehicle has already parked
 		if (isParked(plate)) {
 			return false;
@@ -98,13 +103,13 @@ public class AutoPark {
 		
 		// Get first empty index of parkRecords array
 		int emptyIndex = getFirstEmptyIndex(parkRecords);
-		
+
 		// If emptyIndex == -1 then autopark is full. We cannot add
 		// any vehicle. Must return false
 		if (emptyIndex == -1) {
 			return false;
 		}
-
+		
 		if (result) {
 			// Vehicle is subscribed
 			// Get index of the vehicle
@@ -139,7 +144,13 @@ public class AutoPark {
 			return false;
 		}
 		
-		Vehicle v = parkRecords[getVehicleIndexOnParkRecords(plate)].getVehicle();
+		int parkIndex = getVehicleIndexOnParkRecords(plate);
+		
+		if (parkIndex == -1) {
+			return false;
+		}
+		
+		Vehicle v = parkRecords[parkIndex].getVehicle();
 
 		// Vehicle does not exist
 		if (v == null) {
@@ -150,36 +161,37 @@ public class AutoPark {
 		if (v instanceof OfficialVehicle) {
 			// Get vehicle index and set exit time
 			int index = getVehicleIndexOnParkRecords(v);
-			parkRecords[index].setExitTime(exit);
+			boolean value = parkRecords[index].setExitTime(exit);
 			// Vehicle is gone now. Set to null.
 			parkRecords[index] = null;
-			return true;
+			return value;
 		}
 		
 		// Vehicle is subscribed
 		if (v instanceof SubscribedVehicle) {
+			boolean value = true;
 			if (!v.getSubscription().isValid()) {
 				// Subscription is not valid. Must pay fee.
 				int index = getVehicleIndexOnParkRecords(v);
-				parkRecords[index].setExitTime(exit);
+				value = parkRecords[index].setExitTime(exit);
 				incomeDaily += calculateFee(parkRecords[index]);
 				parkRecords[index] = null;
-				return true;
+				subscribedVehicles[getVehicleIndexOnSubscribedVehicles(v)] = null;
 			}
-			return true;
+			return value;
 		}
 		
 		// Vehicle is regular
 		// Get vehicle index and set exit time
 		int index = getVehicleIndexOnParkRecords(v);
-		parkRecords[index].setExitTime(exit);
+		boolean value = parkRecords[index].setExitTime(exit);
 		
 		// Vehicle is not subscribed. Must pay fee.
 		incomeDaily += calculateFee(parkRecords[index]);
 		
 		// Vehicle is gone now. Set to null.
 		parkRecords[index] = null;
-		return true;
+		return value;
 	}
 	
 	private boolean searchOnSubscriptions(String plate) {
