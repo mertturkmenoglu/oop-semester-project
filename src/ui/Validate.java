@@ -11,10 +11,13 @@ public class Validate {
 	public static boolean hourlyFee(String fee) {
 		double value;
 		
+		if (fee == null) {
+			return false;
+		}
+		
 		try {
 			value = Double.valueOf(fee);
 		} catch (NumberFormatException e){
-			e.printStackTrace();
 			return false;
 		}
 		
@@ -27,7 +30,6 @@ public class Validate {
 		try {
 			value = Integer.valueOf(capacity);
 		} catch (NumberFormatException e){
-			e.printStackTrace();
 			return false;
 		}
 		
@@ -35,16 +37,23 @@ public class Validate {
 	}
 	
 	public static boolean plate(String plate) {
-		return (plate.length() > 0);
+		if (plate == null) {
+			return false;
+		} else {
+			return (plate.length() > 0);
+		}
 	}
 	
 	public static boolean hour(String hour) {
 		int value;
 		
+		if (hour == null) {
+			return false;
+		}
+		
 		try {
 			value = Integer.valueOf(hour);
 		} catch (NumberFormatException e){
-			e.printStackTrace();
 			return false;
 		}
 		
@@ -57,7 +66,6 @@ public class Validate {
 		try {
 			value = Integer.valueOf(minute);
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
 			return false;
 		}
 		
@@ -65,13 +73,16 @@ public class Validate {
 	}
 	
 	public static boolean date(String date) {
+		if (date == null) {
+			return false;
+		}
+		
 		try {
 			DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 			dateFormat.setLenient(false);
 			dateFormat.parse(date);
 			return true;
 		} catch (ParseException e) {
-			e.printStackTrace();
 			return false;
 		}
 	}
