@@ -167,6 +167,19 @@ public class AutoParkTest {
 	}
 	
 	@Test
+	public void testVehicleExitsInvalidExitTime() {
+		autoPark.vehicleEnters(plates[0], new Time(5, 0), false);
+		try {
+			boolean actual = autoPark.vehicleExits(plates[0], new Time(1, 0));
+			boolean expected = false;
+			
+			assertEquals(expected, actual);
+		} catch (Exception e) {
+			assertEquals("EXCEPTION", 0, 1);
+		}
+	}
+	
+	@Test
 	public void testIncomeRegularVehicle() {
 		double first = autoPark.getIncomeDaily();
 		

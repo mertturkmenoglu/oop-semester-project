@@ -157,6 +157,11 @@ public class AutoPark {
 			return false;
 		}
 		
+		// If enter and exit time are wrong, return false
+		if (exit.getDifference(parkRecords[parkIndex].getEnterTime()) == -1) {
+			return false;
+		}
+		
 		// Official vehicle has permanently valid subscription
 		if (v instanceof OfficialVehicle) {
 			// Get vehicle index and set exit time
