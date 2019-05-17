@@ -315,9 +315,9 @@ public class AutoPark {
 	@Override
 	public String toString() {
 		StringBuilder strBuilder = new StringBuilder();
-		strBuilder.append("Subscribed Vehicles: ");
+		strBuilder.append("Subscribed Vehicles: \n");
 		strBuilder.append(Arrays.toString(subscribedVehicles));
-		strBuilder.append("\nPark Records: ");
+		strBuilder.append("\nPark Records: \n");
 		strBuilder.append(Arrays.toString(parkRecords));
 		strBuilder.append("\nHourly fee: ");
 		strBuilder.append(new Double(hourlyFee).toString());
