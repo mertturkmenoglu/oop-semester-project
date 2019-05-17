@@ -94,19 +94,23 @@ public class MainActivity extends JFrame {
 		 * Init Buttons. Buttons will be the medium 
 		 * between user and the program.
 		 */
-		JButton aracEkle = new JButton("Enter Vehicle");
-		JButton aracCikar = new JButton("Exit Vehicle");
-		JButton kayitEkle = new JButton("Add Subscribed Vehicles");
-		JButton otoparkGoruntule = new JButton("View AutoPark");
+		JButton buttonEnterVehicle= new JButton("Enter Vehicle");
+		JButton buttonExitVehicle = new JButton("Exit Vehicle");
+		JButton buttonAddVehicle = new JButton("Add Subscribed Vehicles");
+		JButton buttonViewAutoPark = new JButton("View AutoPark");
+		JButton buttonIsSubscribed = new JButton("Is Subscribed");
+		JButton buttonIsParked = new JButton("Is Parked");
 		
 		/*
 		 * Add buttons to pane. If you do not add it, 
 		 * it will be initialized but not visible.
 		 */
-		contentPane.add(aracEkle);
-		contentPane.add(aracCikar);
-		contentPane.add(kayitEkle);
-		contentPane.add(otoparkGoruntule);
+		contentPane.add(buttonEnterVehicle);
+		contentPane.add(buttonExitVehicle);
+		contentPane.add(buttonAddVehicle);
+		contentPane.add(buttonViewAutoPark);
+		contentPane.add(buttonIsSubscribed);
+		contentPane.add(buttonIsParked);
 		
 		/*
 		 * Add button click listeners to buttons.
@@ -114,31 +118,45 @@ public class MainActivity extends JFrame {
 		 * When user clicks to button, it will call 
 		 * appropriate methods for each button.
 		 */
-		aracEkle.addActionListener(new ActionListener() {
+		buttonEnterVehicle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vehicleEnters();
 			}
 		});
 		
-		aracCikar.addActionListener(new ActionListener() {
+		buttonExitVehicle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				vehicleExits();
 			}
 		});
 		
-		kayitEkle.addActionListener(new ActionListener() {
+		buttonAddVehicle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addVehicle();
 			}
 		});
 		
-		otoparkGoruntule.addActionListener(new ActionListener() {
+		buttonViewAutoPark.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, autoPark.toString());	
+			}
+		});
+		
+		buttonIsSubscribed.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				isSubscribed();
+			}
+		});
+		
+		buttonIsParked.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				isParked();
 			}
 		});
 	}
@@ -295,6 +313,66 @@ public class MainActivity extends JFrame {
 		 * According to boolean value, print information to screen.
 		 */
 		String message = added ? "Vehicle added" : "Unsuccessful";
+		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	/**
+	 * This method handles searching vehicles on subscription array
+	 * It takes vehicle plate.
+	 * Then it will try to search it on autopark.
+	 * It will display
+	 * an information dialog, otherwise, it will prompt an error message.
+	 */
+	private void isSubscribed() {
+		String plate;
+		
+		/*
+		 * Take vehicle plate
+		 */
+		do {
+			plate = (String)
+					JOptionPane.showInputDialog("Vehicle plate: ");
+		} while (!Validate.plate(plate));
+		
+		/*
+		 * Search it on autopark subscribed vehicles
+		 */
+		SubscribedVehicle vehicle = autoPark.searchVehicle(plate);
+		
+		/*
+		 * According to boolean value, print information to screen.
+		 */
+		String message = (vehicle == null) ? "Not subscribed" : "Subscribed";
+		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	/**
+	 * This method handles searching vehicles autopark.
+	 * It takes vehicle plate.
+	 * Then it will try to search it on autopark.
+	 * It will display
+	 * an information dialog, otherwise, it will prompt an error message.
+	 */
+	private void isParked() {
+		String plate;
+		
+		/*
+		 * Take vehicle plate
+		 */
+		do {
+			plate = (String)
+					JOptionPane.showInputDialog("Vehicle plate: ");
+		} while (!Validate.plate(plate));
+		
+		/*
+		 * Search it on autopark subscribed vehicles
+		 */
+		boolean result = autoPark.isParked(plate);
+		
+		/*
+		 * According to boolean value, print information to screen.
+		 */
+		String message = result ? "Vehicle is parked" : "Vehicle is not parked";
 		JOptionPane.showMessageDialog(null, message);
 	}
 	

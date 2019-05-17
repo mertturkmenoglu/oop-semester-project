@@ -32,7 +32,9 @@ public class Main {
 	// And written for just to be sure that we cover everything.
 	public static void main(String[] args) {
 		char c;
-		
+		System.out.println(Date.getToday().getMonth());
+		System.out.println(Date.getToday().getDay());
+		System.out.println(Date.getToday().getYear());
 		System.out.println("Hourly fee: ");
 		double hourlyFee = keyboard.nextDouble();
 		
@@ -61,6 +63,11 @@ public class Main {
 				case '4':
 					System.out.println(autoPark.toString());
 					break;
+				case '5':
+					isSubscribed(autoPark);
+					break;
+				case '6':
+					isParked(autoPark);
 				case '0':
 					flag = false;
 					break;
@@ -79,6 +86,8 @@ public class Main {
 		System.out.println("2- Vehicle exits");
 		System.out.println("3- Add vehicle to subscribed vehicles");
 		System.out.println("4- See AutoPark");
+		System.out.println("5- Is Subscribed");
+		System.out.println("6- Is Parked");
 		System.out.println("0- Exit Program");
 	}
 	
@@ -195,6 +204,45 @@ public class Main {
 		 * According to boolean value, print information to screen.
 		 */
 		String message = added ? "Vehicle added" : "Unsuccessful";
+		System.out.println(message);
+	}
+	
+	private static void isSubscribed(AutoPark autoPark) {
+		String plate;
+		
+		/*
+		 * Take vehicle plate
+		 */
+		System.out.println("Plate: ");
+		plate = keyboard.nextLine();
+		
+		SubscribedVehicle vehicle = autoPark.searchVehicle(plate);
+		
+		/*
+		 * According to boolean value, print information to screen.
+		 */
+		String message = (vehicle == null) ? "Not subscribed" : "Subscribed";
+		System.out.println(message);
+	}
+	
+	private static void isParked(AutoPark autoPark) {
+		String plate;
+		
+		/*
+		 * Take vehicle plate
+		 */
+		System.out.println("Plate: ");
+		plate = keyboard.nextLine();
+		
+		/*
+		 * Search it on autopark subscribed vehicles
+		 */
+		boolean result = autoPark.isParked(plate);
+		
+		/*
+		 * According to boolean value, print information to screen.
+		 */
+		String message = result ? "Vehicle is parked" : "Vehicle is not parked";
 		System.out.println(message);
 	}
 	
